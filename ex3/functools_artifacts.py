@@ -7,20 +7,17 @@ from typing import Any
 def spell_reducer(spells: list[int], operation: str) -> int:
     if not spells:
         return 0
-    if operation == "add":
-        return functools.reduce(operator.add, spells)
-    elif operation == "multiply":
-        return functools.reduce(operator.mul, spells)
-    elif operation == "max":
-        return functools.reduce(
-            lambda a, b: a if operator.gt(a, b) else b, spells
-        )
-    elif operation == "min":
-        return functools.reduce(
-            lambda a, b: a if operator.lt(a, b) else b, spells
-        )
-    else:
+    operations = {
+        "add": operator.add,
+        "multiply": operator.mul,
+        "max": operator.gt,
+        "min": operator.lt,
+    }
+
+    if operation not in operations:
         raise ValueError(f"Unknown operation: {operation}")
+
+    return functools.reduce(operations[operation], spells)
 
 
 def partial_enchanter(

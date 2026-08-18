@@ -36,7 +36,7 @@ def spell_sequence(
     spells: list[Callable[[str, int], str]]
         ) -> Callable[[str, int], list[str]]:
     def sequence_spell(target: str, power: int) -> list[str]:
-        results = []
+        results: list[str] = []
         for spell in spells:
             results.append(spell(target, power))
         return results
@@ -61,7 +61,9 @@ if __name__ == "__main__":
     print(f"Original: {fireball('Dragon', 10)}")
     print(f"Amplified: {mega_fireball('Dragon', 10)}")
     print("\nTesting conditional caster...")
-    is_strong_enough = lambda target, power: power >= 20
+
+    def is_strong_enough(target: str, power: int) -> bool:
+        return power >= 20
     safe_fireball = conditional_caster(is_strong_enough, fireball)
     print(f"Power 30: {safe_fireball('Goblin', 30)}")
     print(f"Power 10: {safe_fireball('Goblin', 10)}")
