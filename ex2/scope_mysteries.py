@@ -64,5 +64,5 @@ if __name__ == "__main__":
     recall_fn = mem["recall"]
     print("Store 'secret' = 42")
     store_fn("secret", 42)
-    print(f"Recall 'secret': {recall_fn("secret")}")
-    print(f"Recall 'unknown': {recall_fn("unknown")}")
+    print(f"Recall 'secret': {recall_fn('secret')}")
+    print(f"Recall 'unknown': {recall_fn('unknown')}")
